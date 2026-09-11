@@ -1,3 +1,53 @@
+/* ========================================
+   VARIABLES
+   ======================================== */
+
+:root {
+    --background: rgb(55, 55, 55);
+    --surface: rgb(105, 106, 113);
+    --surface-hover: rgb(115, 116, 123);
+
+    --text: #ffffff;
+    --muted: #999999;
+    --border: rgb(78, 78, 78);
+
+    --content-width: 1200px;
+}
+
+/* ============ Header ============ */
+
+.homepage-header {
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-content {
+  width: min(var(--content-width), calc(100% - 48px));
+  margin: 0 auto;
+  padding: 28px 0 22px;
+}
+
+.title {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
 body {
   background-color: rgb(55, 55, 55);
   color: white;
