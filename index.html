@@ -20,135 +20,34 @@
         <!-- ================= League Table ================= -->
 
         <section class="league-section">
-        <table class="league-table">
-            <tr>
-                <th>#</th>
-                <th>  </th>
-                <th>Name</th>
-                <th>Played</th>
-                <th>Wins</th>
-                <th>Draws</th>
-                <th>Losses</th>
-                <th>+/-</th>
-                <th>Diff</th>
-                <th>Points</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td> 0 </td>
-                <td>AOC</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td> 0 </td>
-                <td>10 pence gang</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td> 0 </td>
-                <td>Dancers FC</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td> 0 </td>
-                <td>MAAB</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td> 0 </td>
-                <td>FSF FC</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td> 0 </td>
-                <td>Hangover FC</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td> 0 </td>
-                <td>Unreal Madrid FC</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td> 0 </td>
-                <td>P Waggons FC</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td> 0 </td>
-                <td>Spikeyless FC</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0-0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-        </table>
+            <div class="section-heading">
+                <h2>LEAGUE TABLE</h2>
+            </div>
+            <table class="league-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>+/-</th>
+                        <th>Dif</th>
+                        <th>Pts</th>
+                    </tr>
+                </thead>
+                <tbody id="league-table-body">
+                </tbody>
+            </table>
         </section>
 
         <!-- ================= Knockout Stage ================= -->
 
         <section class="knockout-section">
-
-        <h2>KNOCKOUT STAGE</h2>
+            <div class="section-heading">
+                <h2>KNOCKOUT STAGE</h2>
+            </div>
         <div class="knockouts-container">
             <div class="knockout">
                 <div class="match">
@@ -200,5 +99,6 @@
             </li>
         </ul>
     </nav>
+    <script src="script.js"></script>
 </body>
 </html>
