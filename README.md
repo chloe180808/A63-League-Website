@@ -1,15 +1,6 @@
 =======
 # A63 League Website
 
-first order of business:
-
-[] working league table
-    [] take information from database about teams and fixtures
-        [] 
-    [] calculate stats (matches played, wins, draws, losses, scored:conceded, goal difference, points)
-    [] display stats
-    [] refresh when a new fixture is added
-
 A website for the A63 League, a 9-team amateur football league with over 100 registered players.
 
 I'm developing the site to provide a central place for players to view league standings, fixtures, results and statistics, with further features planned as the project develops.
