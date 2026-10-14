@@ -1,20 +1,94 @@
+
+/* ========================================
+   A63 LEAGUE - BASE STYLESHEET
+   ======================================== */
+
+/*
+   SEASONAL BRANDING
+
+   This stylesheet provides the base layout and
+   neutral visual identity for the A63 website.
+
+   Future seasons can override the colour variables
+   without changing the layout or component styling.
+
+   Planned Season 7 palette:
+   - Turquoise: primary accent
+   - Navy: background / surfaces
+   - Yellow: secondary accent / highlights
+
+   Future structure:
+   styles/
+       base.css
+       season-7.css
+       season-8.css
+*/
+
+
 /* ========================================
    VARIABLES
    ======================================== */
 
 :root {
+
+    /* ------------------------------------
+       BACKGROUND COLOURS
+       ------------------------------------ */
+
     --background: rgb(55, 55, 55);
+    /* Season 7: could become navy */
+
     --surface: rgb(105, 106, 113);
+    /* Season 7: could become a lighter navy */
+
     --surface-hover: rgb(115, 116, 123);
+    /* Season 7: lighter variation of surface */
+
+
+    /* ------------------------------------
+       TEXT COLOURS
+       ------------------------------------ */
 
     --text: #ffffff;
+
     --muted: #999999;
+
     --border: rgb(78, 78, 78);
+
+
+    /* ------------------------------------
+       BRAND ACCENTS
+       ------------------------------------ */
+
+    --accent-primary: #ffffff;
+    /* Season 7: turquoise */
+
+    --accent-secondary: #ffffff;
+    /* Season 7: yellow */
+
+    --accent-subtle: rgba(255, 255, 255, 0.04);
+    /* Season 7: translucent turquoise for hover effects */
+
+
+    /* ------------------------------------
+       NAVIGATION
+       ------------------------------------ */
+
+    --nav-background: rgba(55, 55, 55, 0.96);
+    /* Season 7: translucent navy */
+
+
+    /* ------------------------------------
+       LAYOUT
+       ------------------------------------ */
 
     --content-width: 1200px;
 }
 
-/* ============ Whole webpage ============ */
+
+/* ========================================
+   RESET
+   ======================================== */
 
 * {
     box-sizing: border-box;
@@ -26,38 +100,46 @@ html {
 
 body {
     min-height: 100vh;
+
     margin: 0;
     padding: 0 0 90px;
+
     background-color: var(--background);
     color: var(--text);
+
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ============ Header ============ */
 
-.homepage-header {
-  width: 100%;
-  border-bottom: 1px solid var(--border);
+/* ========================================
+   HEADER
+   ======================================== */
+
+.site-header {
+    width: 100%;
+
+    border-bottom: 1px solid var(--border);
 }
 
 .header-content {
-  width: min(var(--content-width), calc(100% - 48px));
-  margin: 0 auto;
-  padding: 28px 0 22px;
+    width: min(var(--content-width), calc(100% - 48px));
+    margin: 0 auto;
+
+    padding: 28px 0 22px;
 }
 
-.title {
+.season-label {
     display: block;
 
     margin-bottom: 4px;
 
     color: var(--muted);
+    /* Could use var(--accent-primary) */
 
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.12em;
 }
-
 
 h1 {
     margin: 0;
@@ -67,62 +149,383 @@ h1 {
     letter-spacing: -0.04em;
 }
 
-.league-table th {
-  color: gray;
-  font-weight: normal;
-  text-align: left;
+
+/* ========================================
+   MAIN
+   ======================================== */
+
+main {
+    width: min(var(--content-width), calc(100% - 48px));
+    margin: 0 auto;
+
+    padding: 34px 0 50px;
+}
+
+section + section {
+    margin-top: 48px;
+}
+
+
+/* ========================================
+   SECTION HEADINGS
+   ======================================== */
+
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 14px;
 }
 
 h2 {
-  font-size: 16px;
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
 }
 
-.knockout ul, ul.navigation-bar {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 16px;
+.stage-label {
+    color: var(--muted);
+
+    font-size: 11px;
+    letter-spacing: 0.08em;
 }
 
-a {
-  text-decoration: none;
-  color: #666;
-  font-size: 13px;
+
+/* ========================================
+   LEAGUE TABLE
+   ======================================== */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-top: 1px solid var(--border);
 }
+
+.league-table {
+    width: 100%;
+
+    min-width: 650px;
+
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.league-table th,
+.league-table td {
+    padding: 13px 12px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+.league-table th {
+    color: var(--muted);
+
+    font-size: 11px;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+}
+
+.league-table td {
+    border-top: 1px solid var(--border);
+
+    font-size: 13px;
+}
+
+.league-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.league-table tbody tr:hover {
+    background-color: var(--accent-subtle);
+    /* Season 7: subtle turquoise hover */
+}
+
+.league-table th:first-child,
+.league-table td:first-child {
+    width: 45px;
+
+    color: var(--muted);
+}
+
+.league-table th:not(:first-child),
+.league-table td:not(:first-child) {
+    text-align: right;
+}
+
+/* Team names are in the second column */
+
+.league-table th:nth-child(2),
+.league-table td:nth-child(2) {
+    text-align: left;
+
+    min-width: 150px;
+}
+
+.league-table .team-name {
+    font-weight: 500;
+}
+
+.league-table .points {
+    font-weight: 700;
+    /* Could use var(--accent-secondary) */
+}
+
+
+/* ========================================
+   KNOCKOUT STAGE
+   ======================================== */
 
 .knockouts-container {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  flex-shrink: 1;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: auto;
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
 }
 
 .knockout {
-  display: flex;
-  background-color: rgb(105, 106, 113);
-  border-radius: 25px;
-  justify-content: space-between;
-  padding: 20px;
-  width: 400px;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    flex: 1 1 360px;
+
+    min-height: 120px;
+
+    padding: 22px 24px;
+
+    background-color: var(--surface);
+
+    border-radius: 18px;
+
+    transition:
+        background-color 0.15s ease,
+        transform 0.15s ease;
 }
 
-.knockout .match {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.knockout:hover {
+    background-color: var(--surface-hover);
+
+    transform: translateY(-2px);
 }
 
-.knockout .result {
-  align-self: center;
+.match {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+    min-width: 0;
 }
+
+.match-team {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    font-size: 14px;
+}
+
+.match-score {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    flex-shrink: 0;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Could become a season-specific surface highlight */
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.result {
+    flex-shrink: 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    text-align: right;
+}
+
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
 
 .navigation-bar {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
+    position: fixed;
 
+    bottom: 0;
+    left: 0;
+
+    z-index: 10;
+
+    width: 100%;
+
+    padding: 12px 24px;
+
+    background-color: var(--nav-background);
+
+    border-top: 1px solid var(--border);
+
+    backdrop-filter: blur(10px);
+}
+
+.navigation-bar ul {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(500px, 100%);
+
+    margin: 0 auto;
+    padding: 0;
+
+    list-style: none;
+}
+
+.navigation-bar li {
+    flex: 1;
+}
+
+.navigation-bar a {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px;
+
+    color: var(--muted);
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    transition: color 0.15s ease;
+}
+
+.navigation-bar a:hover,
+.navigation-bar a.active {
+    color: var(--accent-primary);
+    /* Season 7: turquoise */
+}
+
+.nav-icon {
+    height: 20px;
+
+    font-size: 16px;
+
+    line-height: 20px;
+}
+
+
+/* ========================================
+   LAPTOP / DESKTOP
+   ======================================== */
+
+@media (min-width: 900px) {
+
+    main {
+        padding-top: 45px;
+    }
+
+    .league-table th,
+    .league-table td {
+        padding: 14px 16px;
+    }
+
+    .league-table td {
+        font-size: 14px;
+    }
+
+    .knockouts-container {
+        gap: 16px;
+    }
+
+    .knockout {
+        min-height: 135px;
+
+        padding: 24px 28px;
+    }
+}
+
+
+/* ========================================
+   SMALL SCREENS
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding-bottom: 80px;
+    }
+
+    .header-content,
+    main {
+        width: calc(100% - 32px);
+    }
+
+    .header-content {
+        padding-top: 22px;
+        padding-bottom: 18px;
+    }
+
+    main {
+        padding-top: 25px;
+    }
+
+    section + section {
+        margin-top: 38px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .knockout {
+        flex-basis: 100%;
+
+        gap: 20px;
+
+        min-height: 105px;
+
+        padding: 18px 20px;
+    }
+
+    .result {
+        max-width: 80px;
+    }
 }
