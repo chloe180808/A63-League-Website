@@ -1,0 +1,252 @@
+
+/* ========================================
+   A63 LEAGUE - SEASON 8 THEME
+   ======================================== */
+
+/*
+   Season 8 colours:
+   Turquoise - primary brand colour
+   Navy      - background and surfaces
+   Yellow    - highlights and scores
+
+   Loaded AFTER base.css.
+*/
+
+
+/* ========================================
+   COLOUR VARIABLES
+   ======================================== */
+
+:root {
+    /* Brand colours */
+    --season-turquoise: #35d0c1;
+    --season-navy: #101c32;
+    --season-yellow: #f5d547;
+
+    /* Base stylesheet overrides */
+    --background: var(--season-navy);
+    --surface: #1b2b43;
+    --surface-hover: #263b56;
+
+    --text: #ffffff;
+    --muted: #a6b5c7;
+    --border: #35465c;
+
+    --accent-primary: var(--season-turquoise);
+    --accent-secondary: var(--season-yellow);
+    --accent-subtle: rgba(53, 208, 193, 0.12);
+
+    --nav-background: rgba(16, 28, 50, 0.96);
+}
+
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.site-header {
+    background: linear-gradient(
+        120deg,
+        var(--season-navy) 45%,
+        #174c5a 100%
+    );
+
+    border-bottom: 3px solid var(--season-turquoise);
+}
+
+.season-label {
+    color: var(--season-turquoise);
+}
+
+h1 {
+    color: var(--season-yellow);
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   SECTION HEADINGS
+   ======================================== */
+
+.section-heading {
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--season-turquoise);
+}
+
+.section-heading h2 {
+    color: var(--season-turquoise);
+    font-weight: 800;
+}
+
+.stage-label {
+    color: var(--season-yellow);
+}
+
+
+/* ========================================
+   LEAGUE TABLE
+   ======================================== */
+
+.table-wrapper {
+    border-top: none;
+    border-radius: 10px;
+}
+
+.league-table thead {
+    background-color: var(--season-turquoise);
+}
+
+.league-table th {
+    color: var(--season-navy);
+    font-weight: 700;
+}
+
+.league-table tbody tr {
+    background-color: var(--surface);
+}
+
+.league-table tbody tr:nth-child(even) {
+    background-color: #20334b;
+}
+
+.league-table tbody tr:hover {
+    background-color: #255765;
+}
+
+.league-table td {
+    border-top: 1px solid var(--border);
+}
+
+/* League position */
+.league-table td:first-child {
+    color: var(--season-turquoise);
+    font-weight: 700;
+}
+
+/* Team names */
+.league-table .team-name {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Points column */
+.league-table .points {
+    color: var(--season-yellow);
+    font-weight: 800;
+}
+
+/* Highlight top three teams */
+.league-table tbody tr:nth-child(-n+3) td:first-child {
+    color: var(--season-yellow);
+}
+
+
+/* ========================================
+   KNOCKOUT STAGE
+   ======================================== */
+
+.knockout {
+    background-color: var(--surface);
+
+    border: 1px solid var(--season-turquoise);
+    border-left: 5px solid var(--season-turquoise);
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+
+.knockout:hover {
+    background-color: var(--surface-hover);
+
+    box-shadow: 0 6px 22px rgba(53, 208, 193, 0.15);
+}
+
+.match-team {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.match-score {
+    background-color: var(--season-yellow);
+    color: var(--season-navy);
+
+    font-weight: 800;
+}
+
+.result {
+    color: var(--season-turquoise);
+    font-weight: 600;
+}
+
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+
+.navigation-bar {
+    background-color: var(--nav-background);
+    border-top: 2px solid var(--season-turquoise);
+}
+
+.navigation-bar a {
+    color: var(--muted);
+}
+
+.navigation-bar a:hover,
+.navigation-bar a.active {
+    color: var(--season-yellow);
+}
+
+.navigation-bar a.active .nav-icon {
+    color: var(--season-turquoise);
+}
+
+
+/* ========================================
+   FUTURE SEASON 8 COMPONENTS
+   ======================================== */
+
+/* Buttons */
+
+.season-button {
+    background-color: var(--season-turquoise);
+    color: var(--season-navy);
+
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.season-button:hover {
+    background-color: var(--season-yellow);
+}
+
+/* Badges */
+
+.season-badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    background-color: var(--season-yellow);
+    color: var(--season-navy);
+
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/*
+   Future additions:
+   - Season 8 logo
+   - Clapperboard animation
+   - Touch grass graphics
+   - Matchday cards
+   - Team profile styling
+   - Fantasy player selection
+*/

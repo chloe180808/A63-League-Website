@@ -101,11 +101,21 @@ function renderLeagueTable(table) {
             item.points
         ]
 
-        values.forEach(value => {
-            const td = document.createElement('td');
-            td.textContent = value;
-            row.appendChild(td);
-        });
+    values.forEach((value, index) => {
+        const td = document.createElement('td');
+        td.textContent = value;
+
+        // Apply styling classes to specific columns
+        if (index === 1) {
+            td.classList.add('team-name');
+        }
+
+        if (index === 8) {
+            td.classList.add('points');
+        }
+
+        row.appendChild(td);
+    });
 
         tableBody.appendChild(row);
     });
