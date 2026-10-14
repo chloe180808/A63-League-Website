@@ -1,0 +1,106 @@
+TEAMS_TABLE = """
+CREATE TABLE IF NOT EXISTS Teams (
+    TeamID INTEGER PRIMARY KEY,
+    TeamName TEXT NOT NULL UNIQUE
+);
+"""
+
+PLAYERS_TABLE = """
+CREATE TABLE IF NOT EXISTS Players (
+    PlayerID INTEGER PRIMARY KEY,
+    TeamID INTEGER NOT NULL,
+    FirstName TEXT NOT NULL,
+    Surname TEXT NOT NULL,
+
+    FOREIGN KEY (TeamID) REFERENCES Teams(TeamID)
+);
+"""
+
+MATCHES_TABLE = """
+CREATE TABLE IF NOT EXISTS Matches (
+    MatchID INTEGER PRIMARY KEY,
+    Gameweek INTEGER,
+
+    TeamAID INTEGER NOT NULL,
+    TeamBID INTEGER NOT NULL,
+
+    TeamAGoals INTEGER,
+    TeamBGoals INTEGER,
+
+    FOREIGN KEY (TeamAID) REFERENCES Teams(TeamID),
+    FOREIGN KEY (TeamBID) REFERENCES Teams(TeamID),
+    FOREIGN KEY (Gameweek) REFERENCES Gameweeks(GameweekID)
+);
+"""
+
+PLAYER_MATCH_STATS_TABLE = """
+CREATE TABLE IF NOT EXISTS PlayerMatchStats (
+    PlayerID INTEGER,
+    MatchID INTEGER,
+
+    Goals INTEGER DEFAULT 0,
+    Assists INTEGER DEFAULT 0,
+    POTM BOOLEAN DEFAULT False,
+
+    PRIMARY KEY (PlayerID, MatchID),
+
+    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
+    FOREIGN KEY (MatchID) REFERENCES Matches(MatchID)
+);
+"""
+
+USERS_TABLE = """
+CREATE TABLE IF NOT EXISTS Users (
+    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    Username TEXT UNIQUE NOT NULL,
+    PasswordHash TEXT NOT NULL
+);
+"""
+
+FANTASY_TEAMS_TABLE = """
+CREATE TABLE IF NOT EXISTS FantasyTeams (
+    FantasyTeamID INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    UserID INTEGER NOT NULL,
+    TeamName TEXT NOT NULL,
+
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+"""
+
+FANTASY_TEAM_PLAYERS_TABLE = """
+CREATE TABLE IF NOT EXISTS FantasyTeamPlayers (
+    FantasyTeamID INTEGER,
+    PlayerID INTEGER,
+    Gameweek INTEGER,
+
+    IsCaptain INTEGER DEFAULT 0,
+    IsBench INTEGER DEFAULT 0,
+
+    PRIMARY KEY (FantasyTeamID, PlayerID, Gameweek),
+
+    FOREIGN KEY (FantasyTeamID) REFERENCES FantasyTeams(FantasyTeamID),
+    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID)
+);
+"""
+
+FANTASY_PLAYER_PRICES_TABLE = """
+CREATE TABLE IF NOT EXISTS FantasyPlayerPrices (
+    PlayerID INTEGER PRIMARY KEY,
+    PlayerPrice REAL DEFAULT 10.0,
+
+    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID)
+)
+"""
+
+GAMEWEEKS_TABLE = """
+CREATE TABLE IF NOT EXISTS Gameweeks (
+    GameweekID INTEGER PRIMARY KEY,
+
+    StartDate TEXT,
+    EndDate TEXT,
+
+    IsLocked INTEGER DEFAULT 0
+);
+"""
