@@ -10,6 +10,11 @@ const fixtures = [
     { homeTeam: "FSF FC", awayTeam: "Hangover 96", homeGoals: null, awayGoals: null }
 ];
 
+const knockoutFixtures = [
+    { homeTeam: "AOC", awayTeam: "Dancers FC", homeGoals: 3, awayGoals: 1 },
+    { homeTeam: "MAAB", awayTeam: "P Waggons FC", homeGoals: null, awayGoals: null }
+];
+
 function getRecord(team, fixtures) {
     let played = 0;
     let wins = 0;
@@ -125,6 +130,79 @@ function checkUnplayed(fixture) {
     return fixture.homeGoals == null || fixture.awayGoals == null;
 }
 
+
+function renderKnockoutFixtures(fixtures) {
+    const container = document.querySelector('#knockout-fixtures');
+
+    container.innerHTML = '';
+
+    fixtures.forEach(fixture => {
+
+        // Main knockout card
+        const knockout = document.createElement('div');
+        knockout.classList.add('knockout');
+
+        // Container for both teams
+        const match = document.createElement('div');
+        match.classList.add('match');
+
+        // Home team
+        const homeTeam = document.createElement('div');
+        homeTeam.classList.add('match-team');
+
+        const homeScore = document.createElement('span');
+        homeScore.classList.add('match-score');
+        homeScore.textContent = fixture.homeGoals ?? '-';
+
+        const homeName = document.createElement('span');
+        homeName.textContent = fixture.homeTeam;
+
+        homeTeam.appendChild(homeScore);
+        homeTeam.appendChild(homeName);
+
+        // Away team
+        const awayTeam = document.createElement('div');
+        awayTeam.classList.add('match-team');
+
+        const awayScore = document.createElement('span');
+        awayScore.classList.add('match-score');
+        awayScore.textContent = fixture.awayGoals ?? '-';
+
+        const awayName = document.createElement('span');
+        awayName.textContent = fixture.awayTeam;
+
+        awayTeam.appendChild(awayScore);
+        awayTeam.appendChild(awayName);
+
+        // Add both teams to the match
+        match.appendChild(homeTeam);
+        match.appendChild(awayTeam);
+
+        // Match result/status
+        const result = document.createElement('div');
+        result.classList.add('result');
+
+        if (checkUnplayed(fixture)) {
+            result.textContent = 'Not played';
+        } else if (fixture.homeGoals > fixture.awayGoals) {
+            result.textContent = `${fixture.homeTeam} win`;
+        } else if (fixture.awayGoals > fixture.homeGoals) {
+            result.textContent = `${fixture.awayTeam} win`;
+        } else {
+            result.textContent = 'Draw';
+        }
+
+        // Assemble the card
+        knockout.appendChild(match);
+        knockout.appendChild(result);
+
+        // Add card to the page
+        container.appendChild(knockout);
+    });
+}
+
+
 const leagueTable = generateLeagueTable(teams, fixtures);
 
 renderLeagueTable(leagueTable);
+renderKnockoutFixtures(knockoutFixtures);
