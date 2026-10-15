@@ -1,4 +1,5 @@
 const totalGameweeks = 8;
+let currentGameweek = 1;
 
 // Gameweek 9 represents unscheduled matches.
 const unscheduledPage = 9;
@@ -17,6 +18,30 @@ function getFixturesByGameweek(fixtures, gameweek) {
         Number(fixture.gameweek) === gameweek &&
         fixture.gameweek != null
     );
+}
+
+function getFixturesByTeam(fixtures, team) {
+    if (team === "all-teams") {
+        return fixtures;
+    }
+
+    return fixtures.filter(fixture =>
+        fixture.homeTeam === team ||
+        fixture.awayTeam === team
+    );
+}
+
+function populateFilter(selectId, options) {
+    const container = document.querySelector(selectId);
+
+    options.forEach(option => {
+        const element = document.createElement("option");
+
+        element.value = option;
+        element.textContent = option;
+
+        container.appendChild(element);
+    });
 }
 
 function renderFixtures(fixtures) {
@@ -151,15 +176,24 @@ function updateGameweek() {
         title.textContent = `Gameweek ${currentGameweek}`;
     }
 
-    // Filter fixtures
+    // Filter by gameweek
     const selectedFixtures = getFixturesByGameweek(
         allFixtures,
         currentGameweek
     );
 
-    // Display selected fixtures
-    renderFixtures(selectedFixtures);
-}
+    // Get the currently selected team
+    const selectedTeam = document.querySelector("#team-filter").value;
+
+    // Filter by team
+    const filteredFixtures = getFixturesByTeam(
+        selectedFixtures,
+        selectedTeam
+    );
+
+    // Display the filtered fixtures
+    renderFixtures(filteredFixtures);
+    }
 
 function setupGameweekNavigation() {
     const previousButton = document.querySelector("#previous-gameweek");
@@ -204,7 +238,15 @@ function getCurrentGameweek(fixtures) {
 async function initialiseFixturesPage() {
 
     try {
-        const { fixtures } = await loadLeagueData();
+        const { teams, fixtures } = await loadLeagueData();
+
+        populateFilter("#team-filter", teams);
+
+        const teamFilter = document.querySelector("#team-filter");
+
+        teamFilter.addEventListener("change", () => {
+            updateGameweek();
+        });
 
         // Store every fixture
         allFixtures = fixtures;
