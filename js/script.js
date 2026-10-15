@@ -8,8 +8,6 @@ function getRecord(team, fixtures) {
     let goalDifference = 0;
     let points = 0;
 
-    if (teams.includes(team)) {
-
     for (let i=0; i < fixtures.length; i ++) {
         if (fixtures[i].homeTeam != team && fixtures[i].awayTeam != team) {
             continue;
@@ -41,9 +39,6 @@ function getRecord(team, fixtures) {
     goalDifference = goalsFor - goalsAgainst;
 
     return {team,played,wins,draws,losses,goalsFor,goalsAgainst,goalDifference,points};
-    } else {
-        return team + " not in league."
-    }
 }
 
 function sortTeams(a,b) {
@@ -184,8 +179,37 @@ function renderKnockoutFixtures(fixtures) {
     });
 }
 
+async function loadLeagueData() {
+    const teamsResponse = await fetch("/api/teams");
+    const matchesResponse = await fetch("/api/matches");
 
-const leagueTable = generateLeagueTable(teams, fixtures);
+    if (!teamsResponse.ok || !matchesResponse.ok) {
+        throw new Error("Failed to load league data");
+    }
 
-renderLeagueTable(leagueTable);
+    const teamsData = await teamsResponse.json();
+    const fixtures = await matchesResponse.json();
+
+    const teams = teamsData.map(team => team.TeamName);
+
+    console.log("Teams:", teams);
+    console.log("Fixtures:", fixtures);
+
+    return { teams, fixtures };
+}
+
+async function initialiseWebsite() {
+    try {
+        const { teams, fixtures } = await loadLeagueData();
+
+        const leagueTable = generateLeagueTable(teams, fixtures);
+
+        renderLeagueTable(leagueTable);
+
+    } catch (error) {
+        console.error("Could not load league data:", error);
+    }
+}
+
+initialiseWebsite();
 renderKnockoutFixtures(knockoutFixtures);

@@ -1,5 +1,5 @@
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from pathlib import Path
 import sqlite3
 
@@ -11,6 +11,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Reuse the database created by init_db.py
 DATABASE = BASE_DIR / "data" / "database" / "A63_League.db"
 
+@app.route("/")
+def index():
+    return send_from_directory(BASE_DIR, "index.html")
+
+@app.route("/js/<path:filename>")
+def serve_js(filename):
+    return send_from_directory(BASE_DIR / "js", filename)
+
+
+@app.route("/styles/<path:filename>")
+def serve_styles(filename):
+    return send_from_directory(BASE_DIR / "styles", filename)
 
 def get_connection():
     connection = sqlite3.connect(
