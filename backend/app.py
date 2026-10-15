@@ -12,8 +12,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATABASE = BASE_DIR / "data" / "database" / "A63_League.db"
 
 @app.route("/")
-def index():
+def home():
     return send_from_directory(BASE_DIR, "index.html")
+
+@app.route("/fixtures")
+def fixtures():
+    return send_from_directory(BASE_DIR, "fixtures.html")
+
+@app.route("/fantasy")
+def table():
+    return send_from_directory(BASE_DIR, "fantasy.html")
+
+@app.route("/more")
+def teams():
+    return send_from_directory(BASE_DIR, "more.html")
 
 @app.route("/js/<path:filename>")
 def serve_js(filename):

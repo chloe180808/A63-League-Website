@@ -213,3 +213,11 @@ async function initialiseWebsite() {
 
 initialiseWebsite();
 renderKnockoutFixtures(knockoutFixtures);
+
+const navLinks = document.querySelectorAll(".navbar a");
+
+navLinks.forEach(link => {
+    if (link.pathname === window.location.pathname) {
+        link.classList.add("active");
+    }
+});
