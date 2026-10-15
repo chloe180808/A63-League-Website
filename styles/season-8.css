@@ -177,6 +177,88 @@ h1 {
     font-weight: 600;
 }
 
+/* ========================================
+   SEASON 8 - FIXTURES
+   ======================================== */
+
+.gameweek-container {
+    background-color: var(--surface);
+
+    border-color: var(--season-turquoise);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Gameweek heading */
+
+.gameweek-season {
+    color: var(--season-turquoise);
+}
+
+#gameweek-title {
+    color: var(--text);
+}
+
+/* Navigation arrows */
+
+.gameweek-arrow {
+    background-color: var(--season-navy);
+    color: var(--season-turquoise);
+}
+
+.gameweek-arrow:hover:not(:disabled) {
+    background-color: var(--season-turquoise);
+    color: var(--season-navy);
+}
+
+/* Fixture cards */
+
+.fixture-card {
+    background-color: #15243b;
+    border-color: var(--border);
+}
+
+.fixture-card:hover {
+    background-color: var(--surface-hover);
+}
+
+/* Fixture details */
+
+.fixture-gameweek {
+    color: var(--season-turquoise);
+}
+
+.fixture-date {
+    color: var(--muted);
+}
+
+/* Team names */
+
+.fixture-team-name {
+    color: var(--text);
+}
+
+/* Team logo placeholders */
+
+.fixture-logo {
+    background-color: var(--surface-hover);
+    color: var(--season-turquoise);
+
+    border-color: var(--season-turquoise);
+}
+
+/* Scores */
+
+.fixture-score {
+    background-color: var(--season-yellow);
+    color: var(--season-navy);
+}
+
+/* Empty gameweeks */
+
+.fixtures-empty {
+    color: var(--muted);
+}
 
 /* ========================================
    NAVIGATION

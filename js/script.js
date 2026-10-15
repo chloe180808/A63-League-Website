@@ -179,25 +179,6 @@ function renderKnockoutFixtures(fixtures) {
     });
 }
 
-async function loadLeagueData() {
-    const teamsResponse = await fetch("/api/teams");
-    const matchesResponse = await fetch("/api/matches");
-
-    if (!teamsResponse.ok || !matchesResponse.ok) {
-        throw new Error("Failed to load league data");
-    }
-
-    const teamsData = await teamsResponse.json();
-    const fixtures = await matchesResponse.json();
-
-    const teams = teamsData.map(team => team.TeamName);
-
-    console.log("Teams:", teams);
-    console.log("Fixtures:", fixtures);
-
-    return { teams, fixtures };
-}
-
 async function initialiseWebsite() {
     try {
         const { teams, fixtures } = await loadLeagueData();
